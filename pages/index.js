@@ -5,8 +5,6 @@ import Head from 'next/head'
 import Post from '../componentes/Post'
 import Githubprojects from '../componentes/Githubprojects'
 import {sortByDate} from '../utils'
-//import Github from './Github'
-import perfilGithub from './perfilGithub'
 // import Image from 'next/image'
 // import styles from '../styles/Home.module.css'
 
@@ -33,9 +31,8 @@ export default function Home({posts, json}) {
         {posts.map((post, index) => (          
           <Post key={index} post={post}/>
         ))}
-      </div>
+      </div>      
       
-      <perfilGithub />
       {/* <Github json={json}/> */}
     </div>
   )
