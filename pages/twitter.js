@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { signIn, signOut, useSession } from "next-auth/client"
+import { signIn, signOut, useSession, getSession } from "next-auth/client"
 //import styles from '../styles/Home.module.css'
 
-export default function twitter() {
-    const [ session ] = useSession();
+export default function twitter({session}) {
+    //const [ session ] = useSession();
     //console.log(session)
     
     return (
@@ -14,17 +14,17 @@ export default function twitter() {
         <div className='card-page'>
             <div className='card'>
                 <div className='posts'>
-                    <h3 className='post-title'>Bienvenido { session ? session.user.name + ' tu perfil' : ' al post de Twitter'}</h3>
+                    <h3 className='post-title'>{ session ? `Bienvenido ${session.user.name} a tu perfil.` : 'Twitter.'}</h3>
                 </div>
-            <p>
+            <p className='post-title'>
                 {!session && <>
                     No ha iniciado sesión <br/>
-                    <button onClick={()=>signIn()}>Iniciar sesión</button>
+                    <button className='btn' onClick={()=>signIn()}>Iniciar sesión</button>
                 </>}
                 {session && 
                 <>
-                    Ha iniciado sesión como {session.user.email} <br/>
-                    <button onClick={()=>signOut()}>Cerrar sesión</button>
+                    Ha iniciado sesión como: {session.user.email} <br/>
+                    <button className='btn' onClick={()=>signOut()}>Cerrar sesión</button>
                 </>}
             </p>
             </div>
@@ -32,4 +32,14 @@ export default function twitter() {
         </div>
         </>
     )
+}
+
+export async function getServerSideProps(context) {    
+    const session = await getSession(context);
+    
+    return {
+        props: {
+            session,
+        }
+    }
 }
