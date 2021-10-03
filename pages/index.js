@@ -8,10 +8,10 @@ import {sortByDate} from '../utils'
 // import Image from 'next/image'
 // import styles from '../styles/Home.module.css'
 
-export default function Home({posts, json}) {
+export default function Home({posts}) {
 
-  console.log(posts)
-  console.log(json)
+  // console.log(posts)
+  // console.log(json)
 
   return (
     <div>
@@ -22,7 +22,7 @@ export default function Home({posts, json}) {
       </Head>
       <div className='card-page'>
         <div className='card'>
-          <img className='image-cropper' src='images/Gabriel.jpg' alt=''/>
+          <img className='image-cropper' src='images/Octocat.jpg' alt=''/>
           <p>Hola, soy Gabriel Morejón; desde aquí podrás acceder a la información de mis redes sociales y GitHub.</p>          
         </div>
       </div>
