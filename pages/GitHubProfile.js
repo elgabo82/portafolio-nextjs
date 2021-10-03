@@ -1,10 +1,6 @@
 import Link from 'next/link'
-//import Githubperfil  from '../componentes/Githubperfil';
 
 export default function Github({json}) {
-    // console.log('Perfil\n')
-    // console.log(json)
-    //var perfil = Array.from(props.json)
     return (
         <>
             <Link href='/'>

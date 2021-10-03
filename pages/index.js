@@ -3,13 +3,15 @@ import path from 'path'
 import matter from 'gray-matter'
 import Head from 'next/head'
 import Post from '../componentes/Post'
-import Githubprojects from '../componentes/Githubprojects'
 import {sortByDate} from '../utils'
 // import Image from 'next/image'
-// import styles from '../styles/Home.module.css'
+//import styles from '../styles/Home.module.css'
+import { signIn, signOut, useSession } from 'next-auth/client'
 
 export default function Home({posts}) {
 
+  const [ session ] = useSession();
+  console.log(session)
   // console.log(posts)
   // console.log(json)
 
@@ -23,7 +25,12 @@ export default function Home({posts}) {
       <div className='card-page'>
         <div className='card'>
           <img className='image-cropper' src='images/Octocat.jpg' alt=''/>
-          <p>Hola, soy Gabriel Morejón; desde aquí podrás acceder a la información de mis redes sociales y GitHub.</p>          
+          <p>Gabriel Morejón.
+            Usuario activo Open Source/Servidores/Escritorio, Ingeniero de Software.
+            Reingresando en el desarrollo de Software, HTML/JS/React/Next
+          </p>
+          
+          
         </div>
       </div>
 
@@ -31,8 +38,8 @@ export default function Home({posts}) {
         {posts.map((post, index) => (          
           <Post key={index} post={post}/>
         ))}
-      </div>      
-      
+      </div>
+            
       {/* <Github json={json}/> */}
     </div>
   )

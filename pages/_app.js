@@ -1,14 +1,16 @@
 import Header from '../componentes/Header'
 import '../styles/globals.css'
+import { Provider } from 'next-auth/client'
 
 function MyApp({ Component, pageProps }) {
-  return <>
-    <Header />
-    <main className="container">
-      <Component {...pageProps} />
-    </main>
-
-  </>
+  return (<>
+    <Provider session={pageProps.session}>
+      <Header />
+      <main className="container">
+        <Component {...pageProps} />
+      </main>
+    </Provider>
+  </>);
 }
 
 export default MyApp

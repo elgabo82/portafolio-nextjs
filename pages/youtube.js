@@ -1,38 +1,41 @@
-export default function youtube() {
-    return (
-        <div>
-            
-        </div>
-    )
+const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
+const YOUTUBE_API_KEY = process.env.YOUTUBE_KEY
+
+import styles from '../styles/Home.module.css'
+
+export async function getServerSideProps() {
+    const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=50&playlistId=PLFsfg2xP7cbLuAglQob6zjS4nVbyAfSVV&key=${YOUTUBE_API_KEY}`)
+    const data = await res.json();
+    
+    return {
+        props: {
+            data,
+        }
+    }
 }
 
 
-export async function getStaticProps() {
-    const API_USER = 'elgabo82'
-    const API_URL = `https://api.github.com/users/${API_USER}`;
-    const API_ENDPOINT = `${API_URL}/repos`
-    //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
-
-    //console.log(API_ENDPOINT)
-    const repos = await fetch(`${API_ENDPOINT}`)
-    const json = await repos.json()
-    //const numRepos = Object.keys(json).length
-    
-    //console.log(json)
-    // const numSeguidores = Object.keys(json).length
-    // const seguidores = await fetch(`${API_URL}/followers`)
-    // const json2 = seguidores.json()
-    // const numProyectos = Object.keys(json2).length
-
-    // var forksContador = 0
-    // json2.forEach( f => {
-    //     forksContador += f.forks_count
-    // })  
-    //console.log(json)
-
-    return {
-        props: {
-          json,
-        },
-      }
+export default function youtube({data}) {
+    console.log(data)
+    return (
+        <>
+        Hola
+        {/* <ul className={styles.grid}>
+          {data.items.map(({ id, snippet = {} }) => {
+            const { title, thumbnails = {}, resourceId = {} } = snippet;
+            const { medium } = thumbnails;
+            return (
+              <li key={id} className={styles.card}>
+                <a href={`https://www.youtube.com/watch?v=${resourceId.videoId}`}>
+                  <p>
+                    <img width={medium.width} height={medium.height} src={medium.url} alt="" />
+                  </p>
+                  <h3>{ title }</h3>
+                </a>
+              </li>
+            )
+          })}
+        </ul> */}
+        </> 
+    )
 }

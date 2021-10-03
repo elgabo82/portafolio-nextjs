@@ -5,7 +5,7 @@ export default function Post({post}) {
         <div className='card'>
             <img src={post.frontmatter.cover_image} alt='Imagen descriptiva'/>    
 
-            <div className='post-date'> Posteada en {post.frontmatter.date}</div>
+            <div className='post-date'>Posteada en {post.frontmatter.date}</div>
             <h3>{post.frontmatter.title}</h3>
             <p>{post.frontmatter.excerpt}</p>
 
