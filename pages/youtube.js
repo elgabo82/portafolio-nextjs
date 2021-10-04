@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 
 export async function getServerSideProps() {
+//export async function getStaticProps() {
     const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=50&playlistId=PLFsfg2xP7cbLuAglQob6zjS4nVbyAfSVV&key=${YOUTUBE_API_KEY}`)
     const data = await res.json();
     
