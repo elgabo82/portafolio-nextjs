@@ -19,8 +19,8 @@ export default function Github({json}) {
 }
 
 
-//export async function getStaticProps() {
-export async function getServerSideProps(){
+export async function getStaticProps() {
+//export async function getServerSideProps(){
     const API_USER = process.env.GH_API_USER
     const API_URL = process.env.GH_API_URL+`/users/${API_USER}`
     const API_ENDPOINT = `${API_URL}/repos`
@@ -28,9 +28,9 @@ export async function getServerSideProps(){
     const repos = await fetch(`${API_ENDPOINT}`)
     const json = await repos.json()
 
-    return {
+    return {        
         props: {
-          json,
+            json,
         },
       }
 }

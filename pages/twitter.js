@@ -108,7 +108,7 @@ export async function getServerSideProps(context) {
 //export async function getStaticProps(context) {
     const session = await getSession(context);
     
-    return {
+    return {      
         props: {
             session
         }
