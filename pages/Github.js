@@ -20,8 +20,8 @@ export default function Github({json}) {
 
 
 export async function getStaticProps() {
-    const API_USER = 'elgabo82'
-    const API_URL = `https://api.github.com/users/${API_USER}`;
+    const API_USER = process.env.GH_API_USER
+    const API_URL = process.env.GH_API_URL+`/users/${API_USER}`
     const API_ENDPOINT = `${API_URL}/repos`
 
     const repos = await fetch(`${API_ENDPOINT}`)
