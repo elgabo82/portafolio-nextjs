@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Githubprojects from '../componentes/Githubprojects'
+import Githubprojects from '../components/Githubprojects'
 
 export default function Github({json}) {
     return (
