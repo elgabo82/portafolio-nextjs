@@ -4,17 +4,13 @@ import matter from 'gray-matter'
 import Head from 'next/head'
 import Post from '../componentes/Post'
 import {sortByDate} from '../utils'
+import { useState } from 'react'
 // import Image from 'next/image'
 //import styles from '../styles/Home.module.css'
-import { signIn, signOut, useSession } from 'next-auth/client'
+import { signIn, signOut, useSession, getSession } from 'next-auth/client'
 
-export default function Home({posts}) {
-
-  const [ session ] = useSession();
-  console.log(session)
-  // console.log(posts)
-  // console.log(json)
-
+export default function Home({posts}) { 
+  
   return (
     <div>
       <Head>
@@ -24,15 +20,16 @@ export default function Home({posts}) {
       </Head>
       <div className='card-page'>
         <div className='card'>
-          <img className='image-cropper' src='images/Octocat.jpg' alt=''/>
-          <p>Gabriel Morejón.
+          <img className='logo-64 image-cropper' src='images/Gabriel.jpg' alt=''/>
+          <p className='texto-titulo'>Gabriel Morejón.</p>
+          <p className='parrafo'>
             Usuario activo Open Source/Servidores/Escritorio, Ingeniero de Software.
-            Reingresando en el desarrollo de Software, HTML/JS/React/Next
+            Retomando el desarrollo de Software, HTML/JS/ReactJS/NextJS.
           </p>
-          
-          
         </div>
       </div>
+
+        
 
       <div className='posts'>        
         {posts.map((post, index) => (          
@@ -41,12 +38,19 @@ export default function Home({posts}) {
       </div>
             
       {/* <Github json={json}/> */}
+      <footer>
+        <p>Desarrollado por: Gabriel Morejón, apoyado en el aporte de varios programadores.</p>        
+        Contactos: <a href="mailto:gabrielmorejon@gmail.com">gabrielmorejon@gmail.com</a>
+        <p>Un portafolio sencillo.</p>        
+      </footer>
     </div>
   )
 }
 
 
-export async function getStaticProps() {
+//export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
 
   // Obtiene los archivos del directorio posts
   const archivos = fs.readdirSync(path.join('posts'))
@@ -69,7 +73,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: posts.sort(sortByDate),      
+      posts: posts.sort(sortByDate),
+      session     
     },
   }
 }

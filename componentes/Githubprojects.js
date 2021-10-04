@@ -5,7 +5,7 @@ export default function Githubprojects({repo}) {
     return (        
         <div className='card'>
             {/* <img src={repo.frontmatter.cover_image} alt='' />     */}
-
+            <img src='images/GitHub-Mark-64px.png' className='logo-64' alt='' />
             <div className='post-date'> Fecha de creación: {repo.created_at}</div>
             <h3>Repositorio: {repo.full_name}</h3>
             <p>{repo.html_url}</p>

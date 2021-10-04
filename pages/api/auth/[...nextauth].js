@@ -8,12 +8,30 @@ export default NextAuth({
            clientSecret: process.env.TWITTER_CONSUMER_SECRET
        })
    ],
+//    cookie: {
+//     secure: process.env.NODE_ENV && process.env.NODE_ENV === 'production',
+//     },
+//     session: {
+//         jwt: true,
+//         maxAge: 30 * 24 * 60 * 60
+
+//     },
    callbacks: {
-       async jwt(token, user, account, profile, isNewUser) {
-           console.log(user)
-           console.log(token);
-           console.log(account);
-           return token
+       async jwt(token, user, account = {}, profile, isNewUser) {
+           if ( account.provider && !token[account.provider]) {
+               token[account.provider] = {};
+           }
+
+           if ( account.accessToken) {
+               token[account.provider].accessToken = account.refreshToken;
+           }
+        // if (typeof user !== typeof undefined)
+        // {
+        //     token.user = user;
+        // }
+        return token
        }
-   }
+   },
+   secret: process.env.NEXTAUTH_SECRET
+
 });

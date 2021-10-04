@@ -7,7 +7,7 @@ export default function Github({json}) {
             <Link href='/'>
                 <a className='btn'>Regresar</a>
             </Link>
-            <div className='posts'>
+            <div className='posts'>                
             {
                 json.map((repo, index)=> (
                     <Githubprojects key={index} repo={repo}/>

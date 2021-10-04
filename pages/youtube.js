@@ -1,7 +1,8 @@
 const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
 const YOUTUBE_API_KEY = process.env.YOUTUBE_KEY
 
-//import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css'
+import Link from 'next/link'
 
 export async function getServerSideProps() {
     const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=50&playlistId=PLFsfg2xP7cbLuAglQob6zjS4nVbyAfSVV&key=${YOUTUBE_API_KEY}`)
@@ -16,11 +17,13 @@ export async function getServerSideProps() {
 
 
 export default function youtube({data}) {
-    console.log(data)
+    //console.log(data)
     return (
         <>
-        Hola
-        {/* <ul className={styles.grid}>
+        <Link href='/'>
+          <a className='btn' >Regresar</a>
+        </Link>     
+        <ul className={styles.grid}>
           {data.items.map(({ id, snippet = {} }) => {
             const { title, thumbnails = {}, resourceId = {} } = snippet;
             const { medium } = thumbnails;
@@ -35,7 +38,7 @@ export default function youtube({data}) {
               </li>
             )
           })}
-        </ul> */}
+        </ul>
         </> 
     )
 }

@@ -102,6 +102,20 @@ header a {
   padding: 15px 30px;
 }
 
+.texto-titulo {
+  font-weight: bold;
+}
+
+.parrafo {
+  
+  font-weight: 400;
+}
+
+.logo-64 {
+  width: 64px;
+  height: 64px;
+}
+
 .post-title {
   margin: 10px 0;
 }
