@@ -1,5 +1,5 @@
 ---
-title: 'GitHub'
+title: 'GitHub API'
 date: 'Octubre 2, 2021'
 excerpt: 'Perfil de repositorios en GitHub'
 cover_image: '/images/posts/img1.jpg'

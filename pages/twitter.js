@@ -86,17 +86,17 @@ export default function Twitter({session}) {
                 </>}
 
                 {statuses && <>
-                    <ul>
+                    <ul className='post-body'>
                         {statuses.map(({ id, text, user}) => {
                             return (
-                                <li key={id}>
-                                    <p>{ text }</p>
+                                <li key={id}>                                    
+                                    <p className='post-title'>{ text }</p>
                                     <p>Por { user.name} ({user.screen_name})</p>
                                 </li>
                             );
                         })}
                     </ul>
-                )</>}                
+                </>}                
             </div>
             
         </div>

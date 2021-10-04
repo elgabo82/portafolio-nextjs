@@ -58,6 +58,13 @@ header a {
   padding: 0 10px;
 }
 
+.imagen-posts {
+  width: 99%;
+  height: 40%;
+  /* width: 329px;
+  height: 219px; */
+}
+
 .btn {
   display: inline-block;
   background: steelblue;

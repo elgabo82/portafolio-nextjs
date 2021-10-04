@@ -48,8 +48,8 @@ export default function Home({posts}) {
 }
 
 
-//export async function getStaticProps(context) {
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
+//export async function getServerSideProps(context) {
   const session = await getSession(context);
 
   // Obtiene los archivos del directorio posts
