@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { useState } from 'react';
-import { signIn, signOut, useSession, getSession } from "next-auth/client"
+import { signIn, signOut, getSession } from "next-auth/client"
 //import styles from '../styles/Home.module.css'
 
-export default function twitter({session}) {
+export default function Twitter({session}) {
     //const [ session ] = useSession();
     //console.log(session)
     const [statuses, setSetstatuses] = useState();
