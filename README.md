@@ -15,8 +15,8 @@ Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
 Proyecto sencillo desarrollado usando como referencia mucho contenido en el internet.
 
-[gabrielmorejon@gmail.com](gabrielmorejon@gmail.com)
+Contacto [gabrielmorejon@gmail.com](mailto:gabrielmorejon@gmail.com)
 
-[elgabo82](https://github.com/elgabo82)
+[Perfil de GitHub](https://github.com/elgabo82)
 
 [Repositorio](https://github.com/elgabo82/portafolio-nextjs.git)
