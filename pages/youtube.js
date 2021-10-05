@@ -1,24 +1,40 @@
 const YOUTUBE_PLAYLIST_ITEMS_API = 'https://www.googleapis.com/youtube/v3/playlistItems';
-const YOUTUBE_API_KEY = process.env.YOUTUBE_KEY
+const YOUTUBE_API_KEY = "AIzaSyCgKplaR6UMij80_PVPHWneMAciHpwGRpA" //process.env.YOUTUBE_KEY
 
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
+import useSWR from "swr"
 
-//export async function getServerSideProps() {
-export async function getStaticProps() {
-    const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=50&playlistId=PLFsfg2xP7cbLuAglQob6zjS4nVbyAfSVV&key=${YOUTUBE_API_KEY}`)
-    const data = await res.json();
+// export async function getServerSideProps() {
+// //export async function getStaticProps() {
+//     const res = await fetch(`${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=50&playlistId=PLFsfg2xP7cbLuAglQob6zjS4nVbyAfSVV&key=${YOUTUBE_API_KEY}`)
+//     const data = await res.json();
     
-    return {
-        props: {
-            data
-        }
-    }
-}
+//     return {
+//         props: {
+//             data
+//         }
+//     }
+// }
+
+const YOUTUBE_URL = `${YOUTUBE_PLAYLIST_ITEMS_API}?part=snippet&maxResults=50&playlistId=PLFsfg2xP7cbLuAglQob6zjS4nVbyAfSVV&key=${YOUTUBE_API_KEY}`
 
 
-export default function youtube({data}) {
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+export default function Youtube(/*{data}*/) {
+    
+    const { data, error } = useSWR(
+      YOUTUBE_URL,
+      fetcher
+    );
+  
     //console.log(data)
+
+    if (error) return "Ha ocurrido un error.";
+    if (!data) return "Cargando...";
+    console.log(data)
+
     return (
         <>
         <Link href='/'>

@@ -44,68 +44,67 @@ export default function Twitter({session}) {
             <Link href='/'>
                 <a className='btn'>Regresar</a>
             </Link>
-        <div className='card-page'>
-            <div className='card'>
-                
-                <div className='posts'>
-                    {
-                        session && <>
-                        <img className='image-cropper' src={session.user.image} alt='Imagen del perfil' />
-                        </>
-                    }                    
-                    <h3 className='post-title'>{ session ? `Bienvenido ${session.user.name} a tu perfil.` : 'Twitter.'}</h3><br/>
+            <div className='card-page'>
+                <div className='card'>
                     
-                </div>
-                <p className='post-title'>
-                    {!session && <>
-                        No ha iniciado sesión <br/>
-                        <button className='btn' onClick={()=>signIn()}>Iniciar sesión</button>
+                    <div className='posts'>
+                        {
+                            session && <>
+                            <img className='image-cropper' src={session.user.image} alt='Imagen del perfil' />
+                            </>
+                        }                    
+                        <h3 className='post-title'>{ session ? `Bienvenido ${session.user.name} a tu perfil.` : 'Twitter.'}</h3><br/>
+                        
+                    </div>
+                    <p className='post-title'>
+                        {!session && <>
+                            No ha iniciado sesión <br/>
+                            <button className='btn' onClick={()=>signIn()}>Iniciar sesión</button>
+                        </>}
+                        {session && 
+                        <>
+                            Ha iniciado sesión como: {session.user.email} <br/>
+                            <button className='btn' onClick={()=>signOut()}>Cerrar sesión</button>
+                        </>}
+                    </p>
+                    <div>
+                    {session && <>
+                        <form onSubmit={handleOnTweetSubmit}>
+                        <h2>Enviar tweet:</h2>
+                        <textarea name="status" />
+                        <button>Enviar</button>
+                        </form>
                     </>}
-                    {session && 
-                    <>
-                        Ha iniciado sesión como: {session.user.email} <br/>
-                        <button className='btn' onClick={()=>signOut()}>Cerrar sesión</button>
+                    </div>
+
+                    {session && <>
+                        <form onSubmit={handleOnSearchSubmit}>
+                        <h2>Buscar tweets:</h2>
+                        <input type="search" name="query" />
+                        <button>Buscar</button>
+                        </form>
                     </>}
-                </p>
-                <div>
-                {session && <>
-                    <form onSubmit={handleOnTweetSubmit}>
-                    <h2>Enviar tweet:</h2>
-                    <textarea name="status" />
-                    <button>Enviar</button>
-                    </form>
-                </>}
-                </div>
 
-                {session && <>
-                    <form onSubmit={handleOnSearchSubmit}>
-                    <h2>Buscar tweets:</h2>
-                    <input type="search" name="query" />
-                    <button>Buscar</button>
-                    </form>
-                </>}
-
-                {statuses && <>
-                    <ul className='post-body'>
-                        {statuses.map(({ id, text, user}) => {
-                            return (
-                                <li key={id}>                                    
-                                    <p className='post-title'>{ text }</p>
-                                    <p>Por { user.name} ({user.screen_name})</p>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </>}                
+                    {statuses && <>
+                        <ul className='post-body'>
+                            {statuses.map(({ id, text, user}) => {
+                                return (
+                                    <li key={id}>                                    
+                                        <p className='post-title'>{ text }</p>
+                                        <p>Por { user.name} ({user.screen_name})</p>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </>}                
+                </div>            
             </div>
-            
-        </div>
         </>
     )
 }
 
-//export async function getServerSideProps(context) {
-export async function getStaticProps({ context }) {
+export async function getServerSideProps(context) {
+//export async function getStaticProps(context) {
     const session = await getSession(context);
     
     return {      

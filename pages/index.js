@@ -4,10 +4,8 @@ import matter from 'gray-matter'
 import Head from 'next/head'
 import Post from '../components/Post'
 import {sortByDate} from '../utils'
-import { useState } from 'react'
-// import Image from 'next/image'
 //import styles from '../styles/Home.module.css'
-import { signIn, signOut, useSession, getSession } from 'next-auth/client'
+import { getSession } from 'next-auth/client'
 
 export default function Home({posts}) { 
   
@@ -20,16 +18,14 @@ export default function Home({posts}) {
       </Head>
       <div className='card-page'>
         <div className='card'>
-          <img className='logo-64 image-cropper' src='images/Gabriel.jpg' alt=''/>
+          <img loading="lazy" className='logo-64 image-cropper' src='images/Gabriel.jpg' alt=''/>
           <p className='texto-titulo'>Gabriel Morejón.</p>
           <p className='parrafo'>
             Usuario activo Open Source, Ingeniero de Software.
             Retomando el desarrollo de Software, HTML/JS/ReactJS/NextJS.
           </p>
         </div>
-      </div>
-
-        
+      </div>        
 
       <div className='posts'>        
         {posts.map((post, index) => (          
