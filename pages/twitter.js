@@ -1,14 +1,18 @@
 import Link from 'next/link'
 import { useState } from 'react';
-import { signIn, signOut, getSession } from "next-auth/client"
+import { signIn, signOut, getSession, useSession } from "next-auth/client"
 //import styles from '../styles/Home.module.css'
+import useSWR from 'swr';
 
-export default function Twitter({session}) {
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+export default function Twitter(/*{session}*/) {
     //const [ session ] = useSession();
+    const [ session ] = useSession();
     //console.log(session)
     const [statuses, setSetstatuses] = useState();
 
-    async function handleOnSearchSubmit(e) {
+    async function HandleOnSearchSubmit(e) {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const query = formData.get('query');
@@ -18,12 +22,24 @@ export default function Twitter({session}) {
             body: JSON.stringify({
                 query
             })
-        }).then(res => res.json());
+        }).then(res => res.json());        
 
         setSetstatuses(results.data);
+
+        // const { data, error } = useSWR(
+        //     '/api/twitter/search',
+        //     fetcher
+        // )        
+
+        // if (error) return "Ha ocurrido un error"
+        // if (!data) return "Cargando..."
+        
+        // setSetstatuses(data)
+
+        
     }
 
-    async function handleOnTweetSubmit(e) {
+    async function HandleOnTweetSubmit(e) {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const status = formData.get('status');
@@ -69,7 +85,7 @@ export default function Twitter({session}) {
                     </p>
                     <div>
                     {session && <>
-                        <form onSubmit={handleOnTweetSubmit}>
+                        <form onSubmit={HandleOnTweetSubmit}>
                         <h2>Enviar tweet:</h2>
                         <textarea name="status" />
                         <button>Enviar</button>
@@ -78,7 +94,7 @@ export default function Twitter({session}) {
                     </div>
 
                     {session && <>
-                        <form onSubmit={handleOnSearchSubmit}>
+                        <form onSubmit={HandleOnSearchSubmit}>
                         <h2>Buscar tweets:</h2>
                         <input type="search" name="query" />
                         <button>Buscar</button>
@@ -103,13 +119,13 @@ export default function Twitter({session}) {
     )
 }
 
-export async function getServerSideProps(context) {
-//export async function getStaticProps(context) {
-    const session = await getSession(context);
+// export async function getServerSideProps(context) {
+// //export async function getStaticProps(context) {
+//     const session = await getSession(context);
     
-    return {      
-        props: {
-            session
-        }
-    }
-}
+//     return {      
+//         props: {
+//             session
+//         }
+//     }
+// }
