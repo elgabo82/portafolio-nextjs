@@ -104,8 +104,8 @@ export default function Twitter({session}) {
     )
 }
 
-export async function getServerSideProps(context) {
-//export async function getStaticProps(context) {
+//export async function getServerSideProps(context) {
+export async function getStaticProps({ context }) {
     const session = await getSession(context);
     
     return {      

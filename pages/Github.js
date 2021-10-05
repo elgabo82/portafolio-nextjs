@@ -30,7 +30,7 @@ export async function getStaticProps() {
 
     return {        
         props: {
-            json,
+            json
         },
       }
 }
