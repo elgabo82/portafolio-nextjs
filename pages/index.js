@@ -23,7 +23,7 @@ export default function Home({posts}) {
           <img className='logo-64 image-cropper' src='images/Gabriel.jpg' alt=''/>
           <p className='texto-titulo'>Gabriel Morejón.</p>
           <p className='parrafo'>
-            Usuario activo Open Source/Servidores/Escritorio, Ingeniero de Software.
+            Usuario activo Open Source, Ingeniero de Software.
             Retomando el desarrollo de Software, HTML/JS/ReactJS/NextJS.
           </p>
         </div>
